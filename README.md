@@ -2,7 +2,6 @@
 ## usersテーブル
 | Column             | Type    | Option      |
 |-|-|-|
-| id(PK)             | integer | null: false |
 | nickname           | string  | null: false |
 | email              | string  | null: false, unique: true |
 | encrypted_password | string  | null: false |
@@ -14,12 +13,11 @@
 
 ### Association
 - has_many :items
-- has_many :shopping_record
+- has_many :shopping_records
 
 ## itemsテーブル
 | Column | Type | Option |
 |-|-|-|
-| id(PK)             | integer    | null: false |
 | name               | string     | null: false |
 | descritption       | text       | null: false |
 | price              | integer    | null: false |
@@ -34,7 +32,7 @@
 - belongs_to :user
 - has_one :shopping_record
 
-## shopping_recordテーブル
+## shopping_recordsテーブル
 | Column | Type | Option |
 |-|-|-|
 | user(FK) | references | null: false, foreign_key: true |
@@ -45,16 +43,16 @@
 - belongs_to :item
 - has_one :delivery_address
 
-## delivery_addressテーブル
+## delivery_addressesテーブル
 | Column | Type | Option |
 |-|-|-|
-| prefecture          | integer    | null: false |
-| postal_code         | string     | null: false |
-| city                | string     | null: false |
-| house_number        | string     | null: false |
-| building_name       | string     |
-| telephone_number    | integer    | null: false |
-| shopping_record(FK) | references | null: false, foreign_key: true |
+| prefecture_id          | integer    | null: false |
+| postal_code            | string     | null: false |
+| city                   | string     | null: false |
+| house_number           | string     | null: false |
+| building_name          | string     |
+| telephone_number       | integer    | null: false |
+| shopping_record(FK)    | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :shopping_record
