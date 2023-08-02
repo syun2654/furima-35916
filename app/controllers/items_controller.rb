@@ -24,6 +24,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    # ログインしているユーザーと同一or注文情報が無ければeditファイルが読み込まれる
+    if @item.user_id == current_user.id && @item.order.nil?
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -35,8 +40,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      return redirect_to root_path
+    # ログインしているユーザーと同一であればデータを削除する
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to root_path
     else
       render 'show', status: :unprocessable_entity
     end
@@ -62,7 +69,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def redirect_to_show
+  def redirect_to_show #編集・更新・削除はログインユーザーと出品者が同一でなければトップページに戻る
     return redirect_to root_path if current_user.id != @item.user.id
   end
 end
