@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
   def edit
     # ログインしているユーザーと同一or注文情報が無ければeditファイルが読み込まれる
-    if @item.user_id == current_user.id && @item.order.nil?
+    if @item.user_id == current_user.id && @item.shopping_record.nil?
     else
       redirect_to root_path
     end
