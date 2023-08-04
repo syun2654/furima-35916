@@ -8,5 +8,6 @@ FactoryBot.define do
     house_number { '1-1' }#架空の住所を生成
     building_name { 'テストプラザ' }
     telephone_number { '12345678910' }
+    token {"tok_abcdefghijk00000000000000000"}
   end
 end

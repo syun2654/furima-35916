@@ -1,6 +1,6 @@
 class ShoppingRecordDelivery
   include ActiveModel::Model
-  attr_accessor :prefecture_id, :postal_code, :city, :house_number, :building_name, :telephone_number, :user_id, :item_id
+  attr_accessor :prefecture_id, :postal_code, :city, :house_number, :building_name, :telephone_number, :user_id, :item_id, :token
 
   with_options presence: true do
 
@@ -12,7 +12,7 @@ class ShoppingRecordDelivery
     # shopping_recordのバリデーション
     validates :user_id
     validates :item_id
-    
+    validates :token
   end
 
   def save

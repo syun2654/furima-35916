@@ -100,6 +100,11 @@ RSpec.describe ShoppingRecordDelivery, type: :model do
         @shopping_record_delivery.valid?
         expect(@shopping_record_delivery.errors.full_messages).to include("Telephone number is invalid")
       end
+      it 'トークンが空だと保存できないこと' do
+        @shopping_record_delivery.token = nil
+        @shopping_record_delivery.valid?
+        expect(@shopping_record_delivery.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
