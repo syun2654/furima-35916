@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :select_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :redirect_to_show, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -67,9 +66,5 @@ class ItemsController < ApplicationController
 
   def select_item
     @item = Item.find(params[:id])
-  end
-
-  def redirect_to_show #編集・更新・削除はログインユーザーと出品者が同一でなければトップページに戻る
-    return redirect_to root_path if current_user.id != @item.user.id
   end
 end
