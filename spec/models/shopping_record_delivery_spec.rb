@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ShoppingRecordDelivery, type: :model do
   before do
-    @shopping_record_delivery = FactoryBot.build(:shopping_record_delivery)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @shopping_record_delivery = FactoryBot.build(:shopping_record_delivery, user_id: user.id, item_id: item.id)
   end
 
   describe '配送先情報の保存' do
@@ -97,6 +99,11 @@ RSpec.describe ShoppingRecordDelivery, type: :model do
       end
       it '電話番号が12桁以上あると保存できないこと' do
         @shopping_record_delivery.telephone_number = "1_234_567_891_012"
+        @shopping_record_delivery.valid?
+        expect(@shopping_record_delivery.errors.full_messages).to include("Telephone number is invalid")
+      end
+      it '電話番号が9桁以下だと保存できないこと' do
+        @shopping_record_delivery.telephone_number = "67_891_012"
         @shopping_record_delivery.valid?
         expect(@shopping_record_delivery.errors.full_messages).to include("Telephone number is invalid")
       end

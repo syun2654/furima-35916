@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :shopping_record_delivery do
-    user_id { 1 }#0以外の1~9の整数をランダム
-    item_id { 2 }
     postal_code { '123-4567' }
     prefecture_id { 1 }
     city { 'テスト市' }
