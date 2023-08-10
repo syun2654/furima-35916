@@ -82,6 +82,8 @@ gem "pry-rails"
 gem "payjp"
 gem 'gon'
 gem 'unicorn', '6.1.0'
+gem "aws-sdk-s3", require: false
+
 
 group :development do
   gem 'rubocop', require: false
